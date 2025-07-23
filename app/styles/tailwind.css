@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+@import "./fonts.css";
+
+@theme static {
+    --font-sans: 'iransans';
+    --color-red-primary: #DC2626;
+}
