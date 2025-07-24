@@ -8,3 +8,21 @@
     --color-gray-primary: #2C2E30;
     --color-gray-light: #3B3D3F;
 }
+
+@layer utilities {
+    .bg-header-gradient {
+        background: linear-gradient(90deg, #2C2E30 -0.76%, #0E0E0E 50%);
+    }
+}
+/* 
+header::after {
+    content: ' ';
+    display: block;
+    position: fixed;
+    width: 200px;
+    height: 152px;
+    background-color: #DC262652;
+    backdrop-filter: blur(160px);
+    border-radius: 50%;
+    opacity: 32%;
+} */

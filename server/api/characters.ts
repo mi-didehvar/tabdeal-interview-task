@@ -1,6 +1,6 @@
 import { defineEventHandler, getQuery } from 'h3';
 import type { MarvelApiResponse, Character } from '~/models';
-import { BASE_URL, getMarvelAuthParams } from './auth';
+import { BASE_URL, getMarvelAuthParams } from '../utils/auth';
 
 export default defineEventHandler(async (event) => {
   const query = getQuery(event);
@@ -25,6 +25,7 @@ export default defineEventHandler(async (event) => {
   }
 
   const url = `${BASE_URL}/characters?${params.toString()}`;
+  console.log("Test: ", url)
   const res = await fetch(url);
   const data: MarvelApiResponse<Character> = await res.json();
 
