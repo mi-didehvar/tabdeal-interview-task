@@ -7,5 +7,9 @@ export default defineNuxtConfig({
     '@nuxt/eslint',
     '@nuxt/image'
   ],
-  css: ['~/styles/tailwind.css']
+  css: ['~/styles/tailwind.css'],
+  image: {
+    domains: [
+    ],
+  }
 })
