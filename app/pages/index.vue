@@ -1,14 +1,20 @@
 <script setup lang="ts">
 import Button from '~/components/partials/Button.vue';
 import type { Character, MarvelApiDataContainer } from '~/models';
-
+const route = useRoute()
 const name = ref('');
+const limit = 12;
+const page = ref(Number(route.query.page) || 1);
 
 const { data, pending, refresh, error } = useAsyncData(
     'characters',
     async () => {
         const res = await $fetch('/api/characters', {
-            query: { name: name.value },
+            query: {
+                name: name.value,
+                page: page.value,
+                limit
+            },
         });
 
         return res.data as MarvelApiDataContainer<Character>;
@@ -34,13 +40,17 @@ const { data, pending, refresh, error } = useAsyncData(
             Error...
         </template>
         <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <NuxtLink v-for="hero in data?.results" :key="hero.id" :to="{ name: 'character', params: { id: hero.id } }">
-                <Card class="flex flex-col hover:shadow-xl hover:cursor-pointer">
+            <NuxtLink v-for="hero in data?.results" :key="hero.id"
+                :to="{ name: 'character-id', params: { id: hero.id } }">
+                <LazyCard class="flex flex-col hover:shadow-xl hover:cursor-pointer">
                     <NuxtImg :src="`${hero.thumbnail.path}.${hero.thumbnail.extension}`"
                         class="flex-1 mb-4 rounded-lg" />
                     {{ hero.name }}
-                </Card>
+                </LazyCard>
             </NuxtLink>
         </div>
+
+        <Pagination v-if="data" :current-page="page" :total-pages="Math.ceil(data.total / limit)"
+            @update:page="page = $event" />
     </NuxtLayout>
 </template>
