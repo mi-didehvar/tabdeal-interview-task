@@ -10,6 +10,7 @@ export default defineNuxtConfig({
   css: ['~/styles/tailwind.css'],
   image: {
     domains: [
+      "http://i.annihil.us"
     ],
   }
 })

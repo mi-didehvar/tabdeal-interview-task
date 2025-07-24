@@ -73,3 +73,10 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+
+Todos
+* Add Netlify CICD Configuration file
+* Add The oval in the header
+* implement resouces images
+* improve and develop pagination to be like design
